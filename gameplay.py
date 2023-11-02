@@ -6,23 +6,26 @@ players=[]
 balls = []
 
 class Block():
-    def __init__(self, ax, ay, color):
+    def __init__(self, ax, ay, color, OnBallCollisionEvent):
         self.w = 10
         self.h = 4
         self.x = 3 + (ax * (self.w+2))
-        self.y = 3 + (ay * (self.h+2))
+        self.y = 10 + (ay * (self.h+2))
         self.color = color
         self.life = 5 if color == 13 else 1
+        self.OnBallCollisionEvent = OnBallCollisionEvent
         
     def draw(self):
         pyxel.rect(self.x, self.y, self.w, self.h, levels.ColorChar.get(self.color))
         
     def onBallCollision(self):
+        global app
         if (self.color != 9):
             if(self.life >1):
                 self.life-=1
             else:
                 blocks.remove(self)
+                self.OnBallCollisionEvent()
 
 class Ball():
     def __init__(self, pinned, color):
@@ -81,7 +84,6 @@ class Ball():
                     
     def getDir(self):
         value = (((utilities.Math.clamp(players[0].x - self.x,-players[0].w,0)) + (players[0].w/2))/(-players[0].w/2))*2
-        print(value)
         return value
             
 class Player():

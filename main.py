@@ -9,7 +9,7 @@ class App():
     def __init__(self):
         self.curScene = StartScene(self.GoGameScene)
         self.start()
-        pyxel.init(AppConfig["width"], AppConfig["height"])
+        pyxel.init(AppConfig["width"], AppConfig["height"], fps=30)
         pyxel.run(self.update, self.draw)
         
     def start(self):

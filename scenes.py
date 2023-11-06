@@ -16,11 +16,14 @@ class StartScene():
             self.triggerEvent()
     
     def draw(self):
+        pyxel.text(AppConfig["width"]/2-40, (AppConfig["height"]/2)-20, f"Pelota Ladrillo Rompe", 7)
+        pyxel.text(AppConfig["width"]/2-25, (AppConfig["height"]/2-10), f"Juego Colores", 9)
         hudMan.update()
 
 class GameScene():
     def __init__(self):
-        self.currentLvl = 3
+        self.time = 0
+        self.currentLvl = 0
     
     def start(self):
         players.append( Player(AppConfig["width"]/2))
@@ -47,7 +50,7 @@ class GameScene():
             if(c.color != 13):
                 aux+=1
         
-        print(f"left: {aux}")
+        #print(f"left: {aux}")
         if(aux<=0):
             self.goNextLvl()
                    
@@ -72,6 +75,13 @@ class GameScene():
             players[0].x-=players[0].speed
         if (pyxel.btn(pyxel.KEY_D) or pyxel.btn(pyxel.KEY_RIGHT)):
             players[0].x+=players[0].speed
+            
+        self.time += 1
+        self.time %= 300
+        
+        if(self.time == (29*10)):
+            Data["Score"]-=10
+        
 
     def draw(self):
         pyxel.cls(0)

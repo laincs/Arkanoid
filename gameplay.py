@@ -84,6 +84,11 @@ class Ball():
                     
     def getDir(self):
         value = (((utilities.Math.clamp(players[0].x - self.x,-players[0].w,0)) + (players[0].w/2))/(-players[0].w/2))*2
+        if(value>0):
+            value = utilities.Math.clamp(value, 0.3, 10)
+        else:
+            value = utilities.Math.clamp(value, -10, -0.3)
+        print(value)
         return value
             
 class Player():

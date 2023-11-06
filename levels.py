@@ -9,8 +9,10 @@ class Level():
         self.lvlData = lvlData
         global levels
         levels.append(self)
+        
+    
 
-Level([ "ppppppppppppp",
+""" Level([ "ppppppppppppp",
         "ppppppppppppp",
         "ppppppppppppp",
         "ppppppppppppp",
@@ -18,10 +20,10 @@ Level([ "ppppppppppppp",
         "ppppppppppppp",
         "ppppppppppppp",
         "ppppppppppppp",
-        "ppppppppppppp"])
+        "ppppppppppppp"]) """
 
 
-Level([ "eeee         ",
+""" Level([ "eeee         ",
         "e  e    ooo  ",
         "e  eppppo  o ",
         "e  e    o   o",
@@ -29,24 +31,17 @@ Level([ "eeee         ",
         "e  eppppo  o ",
         "e  e    ooo  ",
         "e  e         ",
-        "eeee         "])
+        "eeee         "]) """
 
 Level([ "             ",
-        "ffffffhhhhhhh",
         "ffhhffhhhhhhh",
         "fhhhhfhhhhhhh",
         "fhffhfhhhhhhh",
         "iiiiiiiiiiiii",
-        "iiiiiiiiiiiii",
-        "iiiiiiiiiiiii",
-        "             "])
+        "iiiiiiiiiiiii"])
 
 Level([ "kkkkkkkkkkkkk",
-        "kkkkkkkkkkkkk",
-        "kkkkkkkkkkkkk",
         "ffffffhffffff",
         "ffffhfffhffff",
         "ffhfffffffhff",
-        "iiiiiiiiiiiii",
-        "iiiiiiiiiiiii",
-        "iiiiiiiiiiiii"])
+        "iiiiiiiiiiiii",])

@@ -10,38 +10,93 @@ class Level():
         global levels
         levels.append(self)
         
-    
 
-""" Level([ "ppppppppppppp",
-        "ppppppppppppp",
-        "ppppppppppppp",
-        "ppppppppppppp",
-        "ppppppppppppp",
-        "ppppppppppppp",
-        "ppppppppppppp",
-        "ppppppppppppp",
-        "ppppppppppppp"]) """
+Level([ "kkkkkkkkkkkkk",
+        "k  hhhhhhhh k",
+        "k  h      h k",
+        "k  h fff  h k",
+        "k  h      h k",
+        "kkkkkkkkkkkkk"])
+
+Level([ "ppppppppppppp",
+        "p           p",
+        "p   kkkk    p",
+        "p  k    k   p",
+        "p   kkkk    p",
+        "p           p",
+        "ppppppppppppp"])
+
+Level([ "ccccccccccccc",
+        "c hhhhhhh h c",
+        "c ccccccc c c",
+        "c c fff c c c",
+        "c c ccc c c c",
+        "ccccccccccccc"])
+
+Level([ "gggggggggggg",
+        "g g gg g g g",
+        "g g gg g g g",
+        "g gggggg g g",
+        "g g gg g g g",
+        "g g gg g g g",
+        "gggggggggggg"])
+
+Level([ "hhhhhhhhhhhhh",
+        "hhh   h   hhh",
+        "hh    h    hh",
+        "h     h     h",
+        "hh         hh",
+        "hhh       hhh",
+        "hhhhhhhhhhhhh"])
+
+Level([ " pop popopo p",
+        "p           p",
+        " popo popopo ",
+        "          p  ",
+        " popopopopop ",
+        "p           p"])
 
 
-""" Level([ "eeee         ",
-        "e  e    ooo  ",
-        "e  eppppo  o ",
-        "e  e    o   o",
-        "eeee    o   o",
-        "e  eppppo  o ",
-        "e  e    ooo  ",
-        "e  e         ",
-        "eeee         "]) """
+Level([ "b b b b b b b",
+        "b   b o o o b",
+        "b b b b b b b",
+        "b o o o b   b",
+        "b b b b b b b",
+        "b           b"])
 
-Level([ "             ",
-        "ffhhffhhhhhhh",
+
+Level([ " i iii iii  i",
+        "i   ii   ii  ",
+        " i  iii iii  i",
+        "ii  ii ii  ii",
+        " ii iii iii  i"])
+
+Level([ " r r r r r r r",
+        " o o o o o o o",
+        " y y y y y y y",
+        " g g g g g g g",
+        " b b b b b b b",
+        " o o o o o o o",
+        " p p p p p p p"])
+
+Level([ "r r b b r r b",
+        " r r r r r r ",
+        "b b b b b b b",
+        " g g r r g g ",
+        "r r r b b r r",
+        " r r r r r r ",
+        "b b g g g g b"])
+
+Level([ "ffhhffhhhhhhh",
         "fhhhhfhhhhhhh",
         "fhffhfhhhhhhh",
+        "iiiiiiiiiiiii",
         "iiiiiiiiiiiii",
         "iiiiiiiiiiiii"])
 
 Level([ "kkkkkkkkkkkkk",
-        "ffffffhffffff",
-        "ffffhfffhffff",
+        "kkkkkkkkkkkkk",
+        "ffffhfhfhffff",
         "ffhfffffffhff",
-        "iiiiiiiiiiiii",])
+        "iiiiiiiiiiiii",
+        "nnnnnnnnnnnnn"])

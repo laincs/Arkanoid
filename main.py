@@ -23,9 +23,11 @@ class App():
         
     def GoGameScene(self):
         self.curScene = GameScene()
-        self.curScene.start()
+        self.start()
         
-    
+    def GoMenuScene(self):
+        self.curScene = StartScene(self.GoGameScene)
+        self.start()
 
-
-app = App()
+if __name__ == "__main__":
+    app = App()

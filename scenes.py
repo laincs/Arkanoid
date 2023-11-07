@@ -12,7 +12,7 @@ class StartScene():
         pass
     
     def update(self):
-        if (pyxel.btn(pyxel.KEY_SPACE) or pyxel.btn(pyxel.KEY_KP_ENTER)):
+        if (pyxel.btnp(pyxel.KEY_SPACE) or pyxel.btnp(pyxel.KEY_KP_ENTER)):
             self.triggerEvent()
     
     def draw(self):
@@ -27,8 +27,7 @@ class GameScene():
     
     def start(self):
         players.append( Player(AppConfig["width"]/2))
-        for c in range(0,1):
-            balls.append( Ball(False, random.randint(1,12)))
+        balls.append( Ball(True, random.randint(1,12), self.onBallLost))
         self.buildLvl(levels.levels[self.currentLvl])
     
     def goNextLvl(self):
@@ -36,6 +35,12 @@ class GameScene():
         if(self.currentLvl >= len(levels.levels)):
             self.currentLvl = 0
         self.buildLvl(levels.levels[self.currentLvl])
+        
+    def onBallLost(self):
+        Data["Lives"]-=1
+        if(Data["Lives"]>0):
+            balls.append( Ball(True, random.randint(1,12), self.onBallLost))
+        
         
     def onTriggerBallDestroy(self):
         hudMan.increaseScore(100)
@@ -55,7 +60,7 @@ class GameScene():
             self.goNextLvl()
                    
     def buildLvl(self, lvl):
-        print(lvl.lvlData[0][0])
+        #print(lvl.lvlData[0][0])
         for y in range (0, len(lvl.lvlData)):
             ax = 0
             for c in lvl.lvlData[y]:
@@ -63,7 +68,7 @@ class GameScene():
                 ax+=1
 
     def update(self):
-        autoPlay = True
+        autoPlay = False
         offset = 3
         if(autoPlay):
             if(balls[0].x > players[0].x + (players[0].w/2) -offset):
@@ -75,6 +80,8 @@ class GameScene():
             players[0].x-=players[0].speed
         if (pyxel.btn(pyxel.KEY_D) or pyxel.btn(pyxel.KEY_RIGHT)):
             players[0].x+=players[0].speed
+        if (pyxel.btnp(pyxel.KEY_W) or pyxel.btnp(pyxel.KEY_SPACE)):
+            for ball in balls: ball.throwBall()
             
         self.time += 1
         self.time %= 300

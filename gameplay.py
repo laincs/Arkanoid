@@ -1,8 +1,9 @@
+from turtle import speed
 import pyxel, levels, random, utilities
 from data import *
 
-blocks=[]
-players=[]
+blocks = []
+players = []
 balls = []
 
 class Block():
@@ -12,7 +13,7 @@ class Block():
         self.x = 3 + (ax * (self.w+2))
         self.y = 10 + (ay * (self.h+2))
         self.color = color
-        self.life = 5 if color == 13 else 1
+        self.life = 5 if color == "n" else 1
         self.OnBallCollisionEvent = OnBallCollisionEvent
         
     def draw(self):
@@ -20,7 +21,8 @@ class Block():
         
     def onBallCollision(self):
         global app
-        if (self.color != 9):
+        if (self.color != "j"):
+            #print(f"{self.color} - {self.life}")
             if(self.life >1):
                 self.life-=1
             else:
@@ -28,11 +30,12 @@ class Block():
                 self.OnBallCollisionEvent()
 
 class Ball():
-    def __init__(self, pinned, color):
+    def __init__(self, pinned, color, OnBallLost):
         global players
         self.pinned = pinned
         self.color = color
         self.active = True
+        self.OnBallLost = OnBallLost
         if(pinned):
             self.x = -100
             self.y = -100
@@ -40,6 +43,7 @@ class Ball():
             self.x = players[0].x + players[0].w/2 - 1
             self.y = players[0].y - players[0].h
         self.r = 1
+        self.speed = 1
         self.dirX = ((random.randint(0, 1)*2)-1)*(random.random()*2-1)
         self.dirY = (-1)*2
         
@@ -49,8 +53,8 @@ class Ball():
             self.x = players[0].x + players[0].w/2 - 1
             self.y = players[0].y - players[0].h
         else:
-            self.x += self.dirX 
-            self.y += self.dirY 
+            self.x += (self.dirX * self.speed)
+            self.y += (self.dirY * self.speed)
         self.colliders()
         
     def throwBall(self):
@@ -64,6 +68,7 @@ class Ball():
             self.dirY = -self.dirY 
         
         if(self.y > AppConfig["height"]):
+            self.OnBallLost()
             global balls
             balls.remove(self)
             
@@ -74,9 +79,9 @@ class Ball():
                     self.dirY = -( self.dirY )
         
             for b in blocks:
-                if(self.x > b.x and self.x < b.x+b.w):
-                    if(self.y > b.y and self.y < b.y + b.h):
-                        if(self.x < b.x+1 or self.x > b.x+b.w-1):
+                if(self.x+self.r > b.x and self.x-self.r < b.x+b.w):
+                    if(self.y+self.r > b.y and self.y-self.r < b.y + b.h):
+                        if(self.x+self.r < b.x+1 or self.x-self.r > b.x+b.w-1):
                             self.dirX = -( self.dirX )
                         else:
                             self.dirY = -( self.dirY )
@@ -88,7 +93,7 @@ class Ball():
             value = utilities.Math.clamp(value, 0.3, 10)
         else:
             value = utilities.Math.clamp(value, -10, -0.3)
-        print(value)
+        #print(value)
         return value
             
 class Player():
@@ -96,8 +101,8 @@ class Player():
         self.x = x
         self.y = AppConfig["height"] - 20
         self.speed = 2
-        self.w = 15
-        self.h = 2
+        self.w = 18
+        self.h = 3
         
     def draw(self):
         pyxel.rect(self.x, self.y, self.w, self.h, 7)

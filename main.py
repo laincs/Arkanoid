@@ -10,6 +10,7 @@ class App():
         self.curScene = StartScene(self.GoGameScene)
         self.start()
         pyxel.init(AppConfig["width"], AppConfig["height"], fps=30)
+        pyxel.load("assets.pyxres")
         pyxel.run(self.update, self.draw)
         
     def start(self):

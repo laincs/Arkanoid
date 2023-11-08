@@ -20,6 +20,7 @@ class StartScene():
         pyxel.text(AppConfig["width"]/2-40, (AppConfig["height"]/2)-20, f"Pelota Ladrillo Rompe", 7)
         pyxel.text(AppConfig["width"]/2-25, (AppConfig["height"]/2-10), f"Juego Colores", 9)
         hudMan.update()
+        #pyxel.blt(50, 50, 0, 0, 0, 10, 10, 0)
 
 class GameScene():
     def __init__(self, triggerEvent):
@@ -29,6 +30,7 @@ class GameScene():
     
     def start(self):
         if(len(players)<=0): players.append( Player(AppConfig["width"]/2))
+        global balls
         balls.append( Ball(True, random.randint(1,12), self.onBallLost))
         self.buildLvl(levels.levels[self.currentLvl])
     
@@ -65,6 +67,8 @@ class GameScene():
                    
     def buildLvl(self, lvl):
         #print(lvl.lvlData[0][0])
+        global blocks
+        blocks.clear()
         for y in range (0, len(lvl.lvlData)):
             ax = 0
             for c in lvl.lvlData[y]:

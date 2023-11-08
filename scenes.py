@@ -9,7 +9,8 @@ class StartScene():
         self.triggerEvent = triggerEvent
     
     def start(self):
-        pass
+        Data["Lives"] = 3
+        Data["Score"] = 0
     
     def update(self):
         if (pyxel.btnp(pyxel.KEY_SPACE) or pyxel.btnp(pyxel.KEY_KP_ENTER)):
@@ -21,12 +22,13 @@ class StartScene():
         hudMan.update()
 
 class GameScene():
-    def __init__(self):
+    def __init__(self, triggerEvent):
         self.time = 0
         self.currentLvl = 0
+        self.triggerEvent = triggerEvent
     
     def start(self):
-        players.append( Player(AppConfig["width"]/2))
+        if(len(players)<=0): players.append( Player(AppConfig["width"]/2))
         balls.append( Ball(True, random.randint(1,12), self.onBallLost))
         self.buildLvl(levels.levels[self.currentLvl])
     
@@ -40,6 +42,8 @@ class GameScene():
         Data["Lives"]-=1
         if(Data["Lives"]>0):
             balls.append( Ball(True, random.randint(1,12), self.onBallLost))
+        else:
+            self.triggerEvent()
         
         
     def onTriggerBallDestroy(self):
@@ -100,4 +104,19 @@ class GameScene():
         for c in balls:
             c.draw()
             
+class EndScene():
+    def __init__(self, triggerEvent):
+        self.triggerEvent = triggerEvent
+    
+    def start(self):
+        pass
+    
+    def update(self):
+        if (pyxel.btnp(pyxel.KEY_SPACE) or pyxel.btnp(pyxel.KEY_KP_ENTER)):
+            self.triggerEvent()
+    
+    def draw(self):
+        pyxel.text(AppConfig["width"]/2-40, (AppConfig["height"]/2)-10, f"Dead End", 7)
+        hudMan.update()
+
 hudMan = HUDManager()

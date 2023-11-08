@@ -19,10 +19,15 @@ class App():
         self.curScene.update()
     
     def draw(self):
+        pyxel.cls(0)
         self.curScene.draw()
         
     def GoGameScene(self):
-        self.curScene = GameScene()
+        self.curScene = GameScene(self.GoEndScene)
+        self.start()
+        
+    def GoEndScene(self):
+        self.curScene = EndScene(self.GoMenuScene)
         self.start()
         
     def GoMenuScene(self):

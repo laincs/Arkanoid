@@ -73,7 +73,7 @@ class Ball():
             balls.remove(self)
             
         for c in range(0,1):
-            if (self.x+self.r > players[c].x and self.x < players[c].x+players[c].w):
+            if (self.x+self.r > players[c].x and self.x-self.r < players[c].x+players[c].w):
                 if (self.y > players[c].y-players[c].h and self.y < players[c].y+players[c].h ):
                     self.dirX = self.getDir()
                     self.dirY = -( self.dirY )

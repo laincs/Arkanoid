@@ -9,7 +9,6 @@ class Level():
         self.lvlData = lvlData
         global levels
         levels.append(self)
-        
 
 Level([ "kkkkkkkkkkkkk",
         "k  hhhhhhhh k",

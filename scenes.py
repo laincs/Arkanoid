@@ -21,24 +21,45 @@ class StartScene():
         pyxel.text(AppConfig["width"]/2-25, (AppConfig["height"]/2-10), f"Juego Colores", 9)
         hudMan.update()
         #pyxel.blt(50, 50, 0, 0, 0, 10, 10, 0)
+        
+class LoadScene():
+    def __init__(self, triggerEvent):
+        self.triggerEvent = triggerEvent
+        self.time = 0
+    
+    def start(self):
+        pass
+    
+    def update(self):
+        self.time += 1
+        self.time %= 100
+        
+        if(self.time == (99)):
+            self.triggerEvent()
+    
+    def draw(self):
+        lvln = Data["Level"]
+        pyxel.text(AppConfig["width"]/2-40, (AppConfig["height"]/2)-20, f"Level {lvln+1}", 7)
+        hudMan.update()
+        #pyxel.blt(50, 50, 0, 0, 0, 10, 10, 0)
 
 class GameScene():
-    def __init__(self, triggerEvent):
+    def __init__(self, triggerLvl, triggerEvent):
         self.time = 0
-        self.currentLvl = 0
+        self.lvl = Data["Level"]
+        self.triggerLvl = triggerLvl
         self.triggerEvent = triggerEvent
     
     def start(self):
         if(len(players)<=0): players.append( Player(AppConfig["width"]/2))
         global balls
         balls.append( Ball(True, random.randint(1,12), self.onBallLost))
-        self.buildLvl(levels.levels[self.currentLvl])
+        self.buildLvl(levels.levels[self.lvl])
     
     def goNextLvl(self):
-        self.currentLvl+=1
-        if(self.currentLvl >= len(levels.levels)):
-            self.currentLvl = 0
-        self.buildLvl(levels.levels[self.currentLvl])
+        Data["Level"]+=1
+        balls.clear()
+        self.triggerLvl()
         
     def onBallLost(self):
         Data["Lives"]-=1
@@ -55,15 +76,15 @@ class GameScene():
     def checkEmptyLevel(self):
         if(len(blocks) == 0):
             self.goNextLvl()
-        
-        aux= 0
-        for c in blocks:
-            if(c.color != 13):
-                aux+=1
-        
-        #print(f"left: {aux}")
-        if(aux<=0):
-            self.goNextLvl()
+        else:
+            aux= 0
+            for c in blocks:
+                if(c.color != 13):
+                    aux+=1
+            
+            #print(f"left: {aux}")
+            if(aux<=0):
+                self.goNextLvl()
                    
     def buildLvl(self, lvl):
         #print(lvl.lvlData[0][0])

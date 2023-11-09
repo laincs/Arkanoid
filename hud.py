@@ -1,6 +1,6 @@
 import pyxel, data
 
-Data = {"Lives":3, "Score":0}
+Data = {"Lives":3, "Score":0, "Level":0}
 HUDElements = []
 
 class HUDElement():

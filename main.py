@@ -7,7 +7,7 @@ from scenes import *
 
 class App():
     def __init__(self):
-        self.curScene = StartScene(self.GoGameScene)
+        self.curScene = StartScene(self.GoLoadScene)
         self.start()
         pyxel.init(AppConfig["width"], AppConfig["height"], fps=30)
         pyxel.load("assets.pyxres")
@@ -23,8 +23,12 @@ class App():
         pyxel.cls(0)
         self.curScene.draw()
         
+    def GoLoadScene(self):
+        self.curScene = LoadScene(self.GoGameScene)
+        self.start()
+        
     def GoGameScene(self):
-        self.curScene = GameScene(self.GoEndScene)
+        self.curScene = GameScene(self.GoLoadScene, self.GoEndScene)
         self.start()
         
     def GoEndScene(self):

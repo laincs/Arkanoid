@@ -17,6 +17,7 @@ class Block():
         self.OnBallCollisionEvent = OnBallCollisionEvent
         
     def draw(self):
+        pyxel.rect(self.x+2, self.y+2, self.w, self.h, 0)
         pyxel.rect(self.x, self.y, self.w, self.h, levels.ColorChar.get(self.color))
         
     def onBallCollision(self):
@@ -48,7 +49,9 @@ class Ball():
         self.dirY = (-1)*2
         
     def draw(self):
+        pyxel.circ(self.x+2,self.y+2,self.r,0)
         pyxel.circ(self.x,self.y,self.r,self.color) #7 white
+        
         if(self.pinned):
             self.x = players[0].x + players[0].w/2 - 1
             self.y = players[0].y - players[0].h
@@ -56,6 +59,8 @@ class Ball():
             self.x += (self.dirX * self.speed)
             self.y += (self.dirY * self.speed)
         self.colliders()
+        
+        
         
     def throwBall(self):
         self.pinned = False
@@ -105,4 +110,5 @@ class Player():
         self.h = 5
         
     def draw(self):
+        pyxel.rect(self.x+2, self.y+2, self.w, self.h, 0)
         pyxel.rect(self.x, self.y, self.w, self.h, 7)

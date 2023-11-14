@@ -137,6 +137,9 @@ class GameScene():
         pyxel.rect(0, 0, 3, data.AppConfig["height"], 0)
         pyxel.rect(data.AppConfig["width"]-3, 0, 3, data.AppConfig["height"], 0)
         
+    def drawFrame(self):
+        
+        
         #frame
         pyxel.line(0, 8, data.AppConfig["width"], 8, 7)
         pyxel.line(0, 10, data.AppConfig["width"], 10, 7)
@@ -144,8 +147,6 @@ class GameScene():
         pyxel.line(2, 8, 2, data.AppConfig["height"], 7)
         pyxel.line(data.AppConfig["width"]-1, 8, data.AppConfig["width"]-1, data.AppConfig["height"], 7)
         pyxel.line(data.AppConfig["width"]-3, 8, data.AppConfig["width"]-3, data.AppConfig["height"], 7)
-        
-        #7 is white
 
     def draw(self):
         pyxel.cls(0)
@@ -157,6 +158,7 @@ class GameScene():
             c.draw()
         for c in balls:
             c.draw()
+        self.drawFrame()
             
 class EndScene():
     def __init__(self, triggerEvent):

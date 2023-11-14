@@ -32,9 +32,9 @@ class LoadScene():
     
     def update(self):
         self.time += 1
-        self.time %= 100
+        self.time %= 50
         
-        if(self.time == (99)):
+        if(self.time == (49)):
             self.triggerEvent()
     
     def draw(self):
@@ -49,11 +49,12 @@ class GameScene():
         self.lvl = Data["Level"]
         self.triggerLvl = triggerLvl
         self.triggerEvent = triggerEvent
+        self.offset = [0,0]
     
     def start(self):
         if(len(players)<=0): players.append( Player(AppConfig["width"]/2))
         global balls
-        balls.append( Ball(True, random.randint(1,12), self.onBallLost))
+        balls.append( Ball(True, 7, self.onBallLost))
         self.buildLvl(levels.levels[self.lvl])
     
     def goNextLvl(self):
@@ -64,7 +65,7 @@ class GameScene():
     def onBallLost(self):
         Data["Lives"]-=1
         if(Data["Lives"]>0):
-            balls.append( Ball(True, random.randint(1,12), self.onBallLost))
+            balls.append( Ball(True, 7, self.onBallLost))
         else:
             self.triggerEvent()
         
@@ -93,7 +94,7 @@ class GameScene():
         for y in range (0, len(lvl.lvlData)):
             ax = 0
             for c in lvl.lvlData[y]:
-                if(c != "_" and c!=" "): blocks.append( Block(ax, y, c, self.onTriggerBallDestroy) )
+                if(c != "_" and c!=" "): blocks.append( Block(ax, y+1, c, self.onTriggerBallDestroy) )
                 ax+=1
 
     def update(self):
@@ -105,9 +106,9 @@ class GameScene():
             if(balls[0].x < players[0].x + (players[0].w/2) +offset):
                 players[0].x-=2
         
-        if (pyxel.btn(pyxel.KEY_A) or pyxel.btn(pyxel.KEY_LEFT)):
+        if (pyxel.btn(pyxel.KEY_A) or pyxel.btn(pyxel.KEY_LEFT)) and (players[0].x > 3):
             players[0].x-=players[0].speed
-        if (pyxel.btn(pyxel.KEY_D) or pyxel.btn(pyxel.KEY_RIGHT)):
+        if (pyxel.btn(pyxel.KEY_D) or pyxel.btn(pyxel.KEY_RIGHT)) and (players[0].x < data.AppConfig["width"]- 3 - players[0].w):
             players[0].x+=players[0].speed
         if (pyxel.btnp(pyxel.KEY_W) or pyxel.btnp(pyxel.KEY_SPACE)):
             for ball in balls: ball.throwBall()
@@ -118,9 +119,37 @@ class GameScene():
         if(self.time == (29*10)):
             Data["Score"]-=10
         
+    def drawBg(self):
+        speed=.5
+        self.offset[0]+=speed
+        self.offset[1]+=speed
+        if(self.offset[0]>=20):
+            self.offset[0]=0
+            self.offset[1]=0
+        for x in range(-1, 15):
+            for y in range(-1,15):
+                posX = x * 20
+                posY = y * 20
+                pyxel.circ(posX + self.offset[0], posY+self.offset[1], 10, 1)
+                
+        #mask
+        pyxel.rect(0, 0, data.AppConfig["width"], 10, 0)
+        pyxel.rect(0, 0, 3, data.AppConfig["height"], 0)
+        pyxel.rect(data.AppConfig["width"]-3, 0, 3, data.AppConfig["height"], 0)
+        
+        #frame
+        pyxel.line(0, 8, data.AppConfig["width"], 8, 7)
+        pyxel.line(0, 10, data.AppConfig["width"], 10, 7)
+        pyxel.line(0, 8, 0, data.AppConfig["height"], 7)
+        pyxel.line(2, 8, 2, data.AppConfig["height"], 7)
+        pyxel.line(data.AppConfig["width"]-1, 8, data.AppConfig["width"]-1, data.AppConfig["height"], 7)
+        pyxel.line(data.AppConfig["width"]-3, 8, data.AppConfig["width"]-3, data.AppConfig["height"], 7)
+        
+        #7 is white
 
     def draw(self):
         pyxel.cls(0)
+        self.drawBg()
         hudMan.update()
         for c in players:
             c.draw()

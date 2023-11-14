@@ -1,5 +1,5 @@
 
 AppConfig = {
-  "width": 160,
-  "height": 120
+  "width": 256,
+  "height": 240 
 }

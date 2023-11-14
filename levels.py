@@ -10,12 +10,12 @@ class Level():
         global levels
         levels.append(self)
 
-Level([ "kkkkkkkkkkkkk",
-        "k  hhhhhhhh k",
-        "k  h      h k",
-        "k  h fff  h k",
-        "k  h      h k",
-        "kkkkkkkkkkkkk"])
+Level([ "kkkkkkkkkkkkkk",
+        "k  hhhhhhhhh k",
+        "k  h       h k",
+        "k  h fffff h k",
+        "k  h       h k",
+        "kkkkkkkkkkkkkk"])
 
 Level([ "ppppppppppppp",
         "p           p",

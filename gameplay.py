@@ -8,8 +8,8 @@ balls = []
 
 class Block():
     def __init__(self, ax, ay, color, OnBallCollisionEvent):
-        self.w = 10
-        self.h = 4
+        self.w = 16
+        self.h = 8
         self.x = 3 + (ax * (self.w+2))
         self.y = 10 + (ay * (self.h+2))
         self.color = color
@@ -42,7 +42,7 @@ class Ball():
         else:
             self.x = players[0].x + players[0].w/2 - 1
             self.y = players[0].y - players[0].h
-        self.r = 1
+        self.r = 2
         self.speed = 1
         self.dirX = ((random.randint(0, 1)*2)-1)*(random.random()*2-1)
         self.dirY = (-1)*2
@@ -61,10 +61,10 @@ class Ball():
         self.pinned = False
         
     def colliders(self):
-        if(self.x <0 or self.x > AppConfig["width"]):
+        if(self.x <4 or self.x > AppConfig["width"]-4):
             self.dirX = -self.dirX
             
-        if(self.y < 0 ):
+        if(self.y < 12 ):
             self.dirY = -self.dirY 
         
         if(self.y > AppConfig["height"]):
@@ -101,8 +101,8 @@ class Player():
         self.x = x
         self.y = AppConfig["height"] - 20
         self.speed = 2
-        self.w = 18
-        self.h = 3
+        self.w = 30
+        self.h = 5
         
     def draw(self):
         pyxel.rect(self.x, self.y, self.w, self.h, 7)

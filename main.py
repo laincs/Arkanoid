@@ -9,13 +9,13 @@ class App():
     def __init__(self):
         self.curScene = StartScene(self.GoLoadScene)
         self.start()
-        pyxel.init(AppConfig["width"], AppConfig["height"], fps=30)
+        pyxel.init(AppConfig["width"], AppConfig["height"], fps=60)
         pyxel.load("assets.pyxres")
         pyxel.run(self.update, self.draw)
         
     def start(self):
         self.curScene.start()
-    
+     
     def update(self):
         self.curScene.update()
     

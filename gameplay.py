@@ -77,20 +77,21 @@ class Ball():
             global balls
             balls.remove(self)
             
-        for c in range(0,1):
-            if (self.x+self.r > players[c].x and self.x-self.r < players[c].x+players[c].w):
-                if (self.y > players[c].y-players[c].h and self.y < players[c].y+players[c].h ):
-                    self.dirX = self.getDir()
-                    self.dirY = -( self.dirY )
-        
-            for b in blocks:
-                if(self.x+self.r > b.x and self.x-self.r < b.x+b.w):
-                    if(self.y+self.r > b.y and self.y-self.r < b.y + b.h):
-                        if(self.x+self.r < b.x+1 or self.x-self.r > b.x+b.w-1):
-                            self.dirX = -( self.dirX )
-                        else:
-                            self.dirY = -( self.dirY )
-                        b.onBallCollision()
+        if (self.x+self.r > players[0].x and self.x-self.r < players[0].x+players[0].w):
+            if (self.y > players[0].y-players[0].h and self.y < players[0].y+players[0].h ):
+                self.dirX = self.getDir()
+                self.dirY = -( self.dirY )
+    
+        for b in blocks:
+            if(self.x+self.r > b.x and self.x-self.r < b.x+b.w):
+                if(self.y+self.r > b.y and self.y-self.r < b.y + b.h):
+                    """ if(self.x < b.x+1 or self.x > b.x + b.w-1 ):
+                        self.dirX = -( self.dirX ) """
+                    if(self.y > b.y+b.h-1 or self.y < b.y+1):
+                        self.dirY = -( self.dirY )
+                    else:
+                        self.dirX = -( self.dirX )
+                    b.onBallCollision()
                     
     def getDir(self):
         value = (((utilities.Math.clamp(players[0].x - self.x,-players[0].w,0)) + (players[0].w/2))/(-players[0].w/2))*2

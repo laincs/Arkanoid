@@ -15,7 +15,7 @@ Level([ "kkkkkkkkkkkkkk",
         "k  h       h k",
         "k  h fffff h k",
         "k  h       h k",
-        "kkkkkkkkkkkkkk"])
+        "jjjjjjkkkjjjjj"])
 
 Level([ "ppppppppppppp",
         "p           p",

@@ -7,8 +7,11 @@ Welcome to "Pelota Ladrillo Rompe"! This is an Arkanoid-style game developed in 
 
 ## Screenshots
 
-<img src="https://raw.github.com/laincs/Arkanoid/main/screenshots/Title.png" alt="Title Screenshot" width="300"/>
-<img src="https://raw.github.com/laincs/Arkanoid/main/screenshots/game.png" alt="Game Screenshot" width="300"/>
+<p float="left">
+  <img src="https://raw.github.com/laincs/Arkanoid/main/screenshots/Title.png" alt="Title Screenshot" width="300"/>
+  <img src="https://raw.github.com/laincs/Arkanoid/main/screenshots/game.png" alt="Game Screenshot" width="300"/>
+</p>
+
 
 ## Requirements
 - Python 3.x

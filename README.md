@@ -48,7 +48,7 @@ Welcome to "Pelota Ladrillo Rompe"! This is an Arkanoid-style game developed in 
 ## Controls
 - Left/Right Arrows: Move the paddle left/right.
 - W/A/S/D: An alternative option for paddle movement.
-- Space Bar: Start the game and also pause/unpause during the game.
+- Space Bar: Start the game and throw the game ball.
 
 ## Contributing
 Feel free to contribute to the development of the game! You can open issues or send pull requests with improvements.

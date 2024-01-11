@@ -19,6 +19,8 @@ class StartScene():
     def draw(self):
         pyxel.text(AppConfig["width"]/2-40, (AppConfig["height"]/2)-20, f"Pelota Ladrillo Rompe", 7)
         pyxel.text(AppConfig["width"]/2-25, (AppConfig["height"]/2-10), f"Juego Colores", 9)
+        pyxel.text(AppConfig["width"]/2-40, (AppConfig["height"]/2+50), f"Press SPACE to start", 9)
+        pyxel.text(AppConfig["width"]/2+75, (AppConfig["height"]/2+110), f"Made by Lian", 7)
         hudMan.update()
         #pyxel.blt(50, 50, 0, 0, 0, 10, 10, 0)
         
